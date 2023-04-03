@@ -38,9 +38,8 @@ namespace CPUWindowsFormsFramework
             {
                 ctrl.DataBindings.Add(propertyname, dt, columnname, true, DataSourceUpdateMode.OnPropertyChanged);
             }
-
-
         }
+
         public static void FormatGridForSearchResults(DataGridView grid)
         {
             grid.AllowUserToAddRows = false;
