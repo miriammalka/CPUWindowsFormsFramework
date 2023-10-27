@@ -30,13 +30,19 @@ namespace CPUWindowsFormsFramework
                 case "dtp":
                     propertyname = "Value";
                     break;
+                case "chk":
+                    propertyname = "Checked";
+                    break;
             }
 
             if (propertyname != "" && columnname != "")
             {
                 ctrl.DataBindings.Add(propertyname, bindsource, columnname, true, DataSourceUpdateMode.OnPropertyChanged);
             }
+
+            //Check.DataBindings.Add("Checked", dt, "check", false, DataSourceUpdateMode.OnPropertyChanged);
         }
+
 
         public static void FormatGridForSearchResults(DataGridView grid, string tablename)
         {
@@ -56,6 +62,7 @@ namespace CPUWindowsFormsFramework
         {
             grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             grid.RowHeadersWidth = 25;
+           
             foreach(DataGridViewColumn col in grid.Columns)
             {
                 if (col.Name.EndsWith("Id"))
@@ -63,11 +70,16 @@ namespace CPUWindowsFormsFramework
                     col.Visible = false;
                 }
             }
+            //foreach(ComboBox c in grid.Columns)
+            //{
+            //    c.Width = 25;
+            //}
             string pkname = tablename + "Id";
             if (grid.Columns.Contains(pkname))
             {
                 grid.Columns[pkname].Visible = false;
             }
+
         }
 
         public static int GetIdFromGrid(DataGridView grid, int rowindex, string columnname)
@@ -106,7 +118,7 @@ namespace CPUWindowsFormsFramework
 
         public static void AddDeleteButtonToGrid(DataGridView grid, string deletecolname)
         {
-            grid.Columns.Add(new DataGridViewButtonColumn() { Text = "X", HeaderText = "Delete", Name = deletecolname, UseColumnTextForButtonValue = true });
+            grid.Columns.Add(dataGridViewColumn: new DataGridViewButtonColumn() { Text = "X", HeaderText = "Delete", Name = deletecolname, UseColumnTextForButtonValue = true, DisplayIndex = grid.Columns.Count});
         }
 
         public static bool IsFormOpen(Type formtype, int pkvalue = 0)
