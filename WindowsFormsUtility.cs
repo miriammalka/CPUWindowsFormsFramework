@@ -39,8 +39,6 @@ namespace CPUWindowsFormsFramework
             {
                 ctrl.DataBindings.Add(propertyname, bindsource, columnname, true, DataSourceUpdateMode.OnPropertyChanged);
             }
-
-            //Check.DataBindings.Add("Checked", dt, "check", false, DataSourceUpdateMode.OnPropertyChanged);
         }
 
 
@@ -70,10 +68,6 @@ namespace CPUWindowsFormsFramework
                     col.Visible = false;
                 }
             }
-            //foreach(ComboBox c in grid.Columns)
-            //{
-            //    c.Width = 25;
-            //}
             string pkname = tablename + "Id";
             if (grid.Columns.Contains(pkname))
             {
